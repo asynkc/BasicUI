@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+            box-sizing:border-box;
+        }
+        .show{
+            display:block;
+            animation:fadeIn 1.5s ease;
+        }
+        .hide{
+            display:none;
+            animation:fadeIn s ease;
+        }
+        img{
+            width:200px;
+            height:auto;
+        }
+        @keyframes fadeIn{
+            0%{
+                opacity:0
+            }
+            100%{
+                opacity:1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class = "gallery">
+        <div class = "container">
+            <div class = "row">
+                <div class = "gallery-filter">
+                    <span class = "filter-item active" data-filter="tout">Tout</span>
+                    <span class = "filter-item" data-filter="volswagen">Volswagen</span>
+                    <span class = "filter-item" data-filter="dacia">Dacia</span>
+                    <span class = "filter-item" data-filter="renault">Renault</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="gallery-item volswagen">
+                    <div class="gallery-item-inner">
+                        <img src="img/volswagen1.jpg" alt="volswagen1" loading="lazy">
+                    </div>
+                </div>
+                <div class="gallery-item dacia">
+                    <div class="gallery-item-inner">
+                        <img src="img/dacia1.jpg" alt="dacia1" loading="lazy">
+                    </div>
+                </div>
+                <div class="gallery-item renault">
+                    <div class="gallery-item-inner">
+                        <img src="img/renault1.jpg" alt="renault1" loading="lazy">
+                    </div>
+                </div>
+                <div class="gallery-item volswagen">
+                    <div class="gallery-item-inner">
+                        <img src="img/volswagen1.jpg" alt="volswagen1" loading="lazy">
+                    </div>
+                </div>
+                <div class="gallery-item dacia">
+                    <div class="gallery-item-inner">
+                        <img src="img/dacia1.jpg" alt="dacia1" loading="lazy">
+                    </div>
+                </div>
+                <div class="gallery-item renault">
+                    <div class="gallery-item-inner">
+                        <img src="img/renault1.jpg" alt="renault1" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let filter = document.querySelector(".gallery-filter");
+    galleryItems = document.querySelectorAll(".gallery-item");
+    filter.addEventListener("click",(event)=>{
+        console.log(event.target.dataset.filter)
+        if(event.target.classList.contains("filter-item")){
+            filter.querySelector(".active").classList.remove("active");
+            event.target.classList.add("active");
+            const filtervalue = event.target.getAttribute("data-filter");
+            galleryItems.forEach((item) => {
+                console.log(item)
+                // if data-filter value is renault or dacia or volswagen || or if the data-filter value is "tout"
+                if(filtervalue=="tout"||item.classList.contains(filtervalue)){
+                    item.classList.remove("hide");
+                    item.classList.add("show");
+                }
+                else{
+                    item.classList.remove("show");
+                    item.classList.add("hide");
+                }
+            });
+        }
+    },false)
+
+</script>
+</html>
